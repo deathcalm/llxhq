@@ -44,13 +44,4 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/var/run
 endef
 
-# 添加下载规则
-define Download/$(PKG_NAME)
-  VERSION:=$(PKG_VERSION)
-  URL:=https://github.com/$(GITHUB_REPOSITORY)/archive/
-  FILE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-  HASH:=skip
-endef
-
-$(eval $(call Download,$(PKG_NAME)))
 $(eval $(call BuildPackage,$(PKG_NAME))) 

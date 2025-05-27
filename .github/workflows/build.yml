@@ -35,11 +35,11 @@ jobs:
           # - mips_24kc
           # - mips_4kec
           # - mips_mips32
-          - mipsel_24kc
+          # - mipsel_24kc
           # - mipsel_24kc_24kf
           # - mipsel_74kc
           # - mipsel_mips32
-          # - x86_64
+          - x86_64
 
     steps:
       - uses: actions/checkout@v4
@@ -51,8 +51,6 @@ jobs:
           mkdir -p package/luci-app-llxh
           cp -r luasrc root Makefile package/luci-app-llxh/
           cp feeds.conf package/luci-app-llxh/
-          # 创建下载文件
-          tar czf package/luci-app-llxh/luci-app-llxh-1.0.0.tar.gz --exclude='.git' --exclude='package' .
 
       - name: Building packages
         uses: sbwml/openwrt-gh-action-sdk@main
@@ -62,7 +60,7 @@ jobs:
           PACKAGES: luci-app-llxh
           NO_REFRESH_CHECK: true
           FEEDS_CONF: package/luci-app-llxh/feeds.conf
-          GITHUB_REPOSITORY: ${{ github.repository }}
+          SKIP_DOWNLOAD: true
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
