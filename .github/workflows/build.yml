@@ -46,6 +46,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Prepare package
+        run: |
+          mkdir -p package/luci-app-llxh
+          cp -r * package/luci-app-llxh/
+          cp feeds.conf package/luci-app-llxh/
+
       - name: Building packages
         uses: sbwml/openwrt-gh-action-sdk@main
         env:
@@ -53,6 +59,7 @@ jobs:
           FEEDNAME: packages_ci
           PACKAGES: luci-app-llxh
           NO_REFRESH_CHECK: true
+          FEEDS_CONF: package/luci-app-llxh/feeds.conf
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

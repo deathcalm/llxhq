@@ -14,7 +14,7 @@ define Package/$(PKG_NAME)
   SUBMENU:=3. Applications
   TITLE:=流量消耗器
   PKGARCH:=all
-  DEPENDS:=+lua +luci-lib-jsonc +lua-socket +lua-sec +lua-ltn12
+  DEPENDS:=+lua +luci-lib-jsonc +luasocket
 endef
 
 define Package/$(PKG_NAME)/description
