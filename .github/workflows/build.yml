@@ -49,7 +49,7 @@ jobs:
       - name: Prepare package
         run: |
           mkdir -p package/luci-app-llxh
-          cp -r * package/luci-app-llxh/
+          cp -r luasrc root Makefile package/luci-app-llxh/
           cp feeds.conf package/luci-app-llxh/
 
       - name: Building packages
