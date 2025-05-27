@@ -4,6 +4,7 @@ PKG_NAME:=luci-app-llxh
 PKG_VERSION:=1.0.0
 PKG_RELEASE:=1
 
+PKG_SOURCE:=none
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
 include $(INCLUDE_DIR)/package.mk
