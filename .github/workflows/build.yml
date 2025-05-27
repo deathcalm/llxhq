@@ -48,9 +48,8 @@ jobs:
 
       - name: Prepare package
         run: |
-          mkdir -p package/luci-app-llxh
-          cp -r luasrc root Makefile package/luci-app-llxh/
-          cp feeds.conf package/luci-app-llxh/
+          mkdir -p luci-app-llxh
+          cp -r luasrc root Makefile luci-app-llxh/
 
       - name: Building packages
         uses: sbwml/openwrt-gh-action-sdk@main
@@ -59,8 +58,6 @@ jobs:
           FEEDNAME: packages_ci
           PACKAGES: luci-app-llxh
           NO_REFRESH_CHECK: true
-          FEEDS_CONF: package/luci-app-llxh/feeds.conf
-          SKIP_DOWNLOAD: true
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -75,4 +72,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           replacesArtifacts: true
-          artifacts: "bin/packages/${{ matrix.arch }}/packages_ci/*.ipk" 
+          artifacts: "bin/packages/${{ matrix.arch }}/packages_ci/*.ipk"
