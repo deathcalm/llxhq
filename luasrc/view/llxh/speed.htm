@@ -1,0 +1,32 @@
+<%#
+ Copyright 2008 Steven Barth <steven@midlink.org>
+ Copyright 2008-2011 Jo-Philipp Wich <jow@openwrt.org>
+ Licensed to the public under the Apache License 2.0.
+-%>
+
+<div class="cbi-section">
+    <h3><%:当前下载速度%></h3>
+    <div class="cbi-section-node">
+        <div class="cbi-value">
+            <label class="cbi-value-title"><%:总速度%></label>
+            <div class="cbi-value-field">
+                <span id="current-speed">0</span> MB/s
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function updateSpeed() {
+        XHR.get('<%=luci.dispatcher.build_url("admin", "services", "llxh", "speed")%>', null,
+            function(x, data) {
+                var speed = JSON.parse(data).speed;
+                document.getElementById('current-speed').innerHTML = speed;
+            }
+        );
+    }
+
+    // 每秒更新一次速度
+    setInterval(updateSpeed, 1000);
+    updateSpeed();
+</script> 

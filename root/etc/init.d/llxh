@@ -1,0 +1,27 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+USE_PROCD=1
+
+PROG=/usr/bin/llxh.lua
+CONFIG=llxh
+
+start_service() {
+    config_load $CONFIG
+    config_get_bool enabled $CONFIG enabled 0
+    [ $enabled -eq 0 ] && return 0
+
+    config_get threads $CONFIG threads 3
+    config_get url $CONFIG url "https://speed.cloudflare.com/__down?bytes=25000000"
+    config_get interval $CONFIG interval 5
+
+    procd_open_instance
+    procd_set_param command lua $PROG -t $threads -u "$url" -i $interval
+    procd_set_param respawn
+    procd_close_instance
+}
+
+reload_service() {
+    stop
+    start
+} 

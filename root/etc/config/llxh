@@ -1,0 +1,5 @@
+config llxh 'llxh'
+	option enabled '0'
+	option threads '3'
+	option url 'https://speed.cloudflare.com/__down?bytes=25000000'
+	option interval '5' 
