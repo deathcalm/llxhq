@@ -58,6 +58,7 @@ jobs:
           FEEDNAME: packages_ci
           PACKAGES: luci-app-llxh
           NO_REFRESH_CHECK: true
+          SKIP_DOWNLOAD: true
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

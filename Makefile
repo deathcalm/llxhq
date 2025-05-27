@@ -45,4 +45,4 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/var/run
 endef
 
-$(eval $(call BuildPackage,$(PKG_NAME))) 
+$(eval $(call BuildPackage,$(PKG_NAME)))
