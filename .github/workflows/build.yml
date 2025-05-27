@@ -51,6 +51,8 @@ jobs:
           mkdir -p package/luci-app-llxh
           cp -r luasrc root Makefile package/luci-app-llxh/
           cp feeds.conf package/luci-app-llxh/
+          # 创建下载文件
+          tar czf package/luci-app-llxh/luci-app-llxh-1.0.0.tar.gz --exclude='.git' --exclude='package' .
 
       - name: Building packages
         uses: sbwml/openwrt-gh-action-sdk@main
@@ -60,6 +62,7 @@ jobs:
           PACKAGES: luci-app-llxh
           NO_REFRESH_CHECK: true
           FEEDS_CONF: package/luci-app-llxh/feeds.conf
+          GITHUB_REPOSITORY: ${{ github.repository }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
